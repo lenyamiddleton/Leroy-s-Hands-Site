@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leroy's Hands — Independent Living</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F8F5EC;
+    --ivory: #FDFBF4;
+    --warm-white: #FFFEF9;
+    --emerald: #6B6B2A;
+    --emerald-mid: #595920;
+    --emerald-light: #7D7D32;
+    --olive: #5C6832;
+    --olive-mid: #6E7C3A;
+    --gold: #C4983A;
+    --gold-light: #D9B86A;
+    --text: #2A2C26;
+    --text-muted: #5E6455;
+    --border: rgba(42,44,38,0.12);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,245,236,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    text-decoration: none;
+    display: flex; align-items: center;
+  }
+
+  .nav-logo img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--emerald); }
+
+  .nav-cta {
+    background: #1A5C3A !important;
+    color: var(--warm-white) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--emerald-mid) !important; color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 48%; height: 100%;
+    background: linear-gradient(135deg, #DDE8D0 0%, #C8DABA 100%);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 580px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 500;
+    color: var(--emerald);
+    line-height: 1.18;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: #1A5C3A;
+    color: #fff;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary:hover { background: var(--emerald-mid); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--emerald);
+    border: 1.5px solid var(--emerald);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: #1A5C3A; color: #fff; }
+
+  .hero-badge {
+    position: absolute; right: 8%; top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 240px;
+    box-shadow: 0 8px 32px rgba(26,92,58,0.08);
+  }
+
+  .hero-badge .badge-num {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-badge p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    font-weight: 500;
+    color: var(--emerald);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--ivory);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .stat-card .num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--emerald);
+    font-weight: 500;
+  }
+
+  .stat-card .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* SERVICES */
+  #services { background: var(--cream); }
+
+  .services-intro { max-width: 1100px; margin: 0 auto; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 8px 28px rgba(26,92,58,0.08);
+    transform: translateY(-2px);
+  }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    background: #E6EFE0;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.2rem;
+    color: var(--emerald);
+  }
+
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--emerald);
+    margin-bottom: 0.6rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* AMENITIES */
+  #amenities { background: var(--olive); }
+
+  #amenities .section-label { color: var(--gold-light); }
+
+  #amenities .section-title { color: var(--ivory); }
+
+  #amenities .section-subtitle { color: rgba(253,251,244,0.65); }
+
+  .amenities-intro { max-width: 1100px; margin: 0 auto; }
+
+  .amenities-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .amenity-item {
+    border: 1px solid rgba(253,251,244,0.18);
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: rgba(253,251,244,0.88);
+    font-size: 0.9rem;
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-weight: 300;
+  }
+
+  .amenity-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--ivory); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .contact-info p {
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-detail .cd-icon {
+    width: 36px; height: 36px; background: #E6EFE0;
+    border-radius: 6px; display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; flex-shrink: 0;
+    color: var(--emerald);
+  }
+
+  .contact-detail .cd-text strong {
+    display: block; font-size: 0.8rem; font-weight: 500;
+    color: var(--emerald); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-detail .cd-text span { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    background: var(--cream);
+    color: var(--text);
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--emerald);
+  }
+
+  .contact-form textarea { height: 130px; resize: vertical; }
+
+  /* FOOTER */
+  footer {
+    background: #1A5C3A;
+    color: rgba(248,245,236,0.5);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
+
+  footer span { color: var(--gold-light); }
+
+  /* OVERLAY / MODAL */
+  .overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(26,92,58,0.65);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+
+  .overlay.active { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    transform: translateY(16px);
+    transition: transform 0.25s;
+  }
+
+  .overlay.active .modal { transform: translateY(0); }
+
+  .modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.3rem; color: var(--text-muted);
+    line-height: 1;
+  }
+
+  .modal-close:hover { color: var(--text); }
+
+  .modal-eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+  }
+
+  .modal h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem; font-weight: 500;
+    color: var(--emerald); margin-bottom: 0.5rem;
+  }
+
+  .modal p {
+    font-size: 0.9rem; color: var(--text-muted);
+    font-weight: 300; margin-bottom: 1.5rem; line-height: 1.7;
+  }
+
+  .modal input, .modal select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    background: var(--cream);
+    color: var(--text);
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .modal input:focus, .modal select:focus { border-color: var(--emerald); }
+
+  .modal-success {
+    text-align: center; padding: 1rem 0;
+    display: none;
+  }
+
+  .modal-success .check {
+    font-size: 2.5rem; margin-bottom: 1rem;
+  }
+
+  .modal-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem; color: var(--emerald);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-success p { margin-bottom: 0; }
+
+  /* APPLICATION SECTION */
+  #apply { background: var(--cream); }
+
+  .app-intro { max-width: 860px; margin: 0 auto; }
+
+  /* Step progress bar */
+  .app-progress {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; max-width: 860px; margin: 2.5rem auto 0;
+  }
+
+  .app-step-dot {
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    position: relative; flex: 1;
+  }
+
+  .app-step-dot:not(:last-child)::after {
+    content: '';
+    position: absolute; top: 14px; left: 50%; width: 100%; height: 2px;
+    background: var(--border); z-index: 0;
+  }
+
+  .app-step-dot.done:not(:last-child)::after,
+  .app-step-dot.active:not(:last-child)::after { background: #1A5C3A; }
+
+  .step-circle {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 600; color: var(--text-muted);
+    position: relative; z-index: 1; transition: all 0.3s;
+  }
+
+  .app-step-dot.active .step-circle {
+    background: #1A5C3A; border-color: #1A5C3A;
+    color: #fff;
+  }
+
+  .app-step-dot.done .step-circle {
+    background: #1A5C3A; border-color: #1A5C3A;
+    color: #fff; font-size: 0.8rem;
+  }
+
+  .step-label {
+    font-size: 0.68rem; font-weight: 500; color: var(--text-muted);
+    text-align: center; letter-spacing: 0.04em;
+    text-transform: uppercase; max-width: 70px; line-height: 1.3;
+  }
+
+  .app-step-dot.active .step-label { color: var(--emerald); }
+
+  /* Form panels */
+  .app-panels { max-width: 860px; margin: 2rem auto 0; }
+
+  .app-panel { display: none; }
+  .app-panel.active { display: block; }
+
+  .app-card {
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2.5rem;
+  }
+
+  .app-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem; font-weight: 500;
+    color: var(--emerald); margin-bottom: 0.3rem;
+  }
+
+  .app-card .panel-sub {
+    font-size: 0.88rem; color: var(--text-muted);
+    margin-bottom: 1.75rem; font-weight: 300;
+  }
+
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-bottom: 1rem;
+  }
+
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .form-group label {
+    font-size: 0.78rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--text-muted);
+  }
+
+  .form-group label .req { color: var(--gold); margin-left: 2px; }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    background: var(--warm-white);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--emerald); }
+
+  .form-group textarea { height: 90px; resize: vertical; }
+
+  /* Checkbox groups */
+  .check-group { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .check-group label {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.9rem; font-weight: 300; color: var(--text);
+    cursor: pointer; text-transform: none; letter-spacing: 0;
+  }
+
+  .check-group input[type="checkbox"] {
+    width: 16px; height: 16px; accent-color: var(--emerald);
+    cursor: pointer; flex-shrink: 0;
+  }
+
+  .check-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem; margin-top: 0.4rem;
+  }
+
+  .check-grid label {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.88rem; font-weight: 300; color: var(--text);
+    cursor: pointer;
+  }
+
+  .check-grid input[type="checkbox"] {
+    width: 15px; height: 15px; accent-color: var(--emerald);
+    cursor: pointer; flex-shrink: 0;
+  }
+
+  /* Radio groups */
+  .radio-group {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 0.4rem;
+  }
+
+  .radio-group label {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.88rem; font-weight: 300; color: var(--text);
+    cursor: pointer;
+  }
+
+  .radio-group input[type="radio"] {
+    accent-color: var(--emerald); cursor: pointer;
+  }
+
+  .section-divider {
+    border: none; border-top: 1px solid var(--border);
+    margin: 1.75rem 0;
+  }
+
+  .field-label {
+    font-size: 0.78rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--text-muted); margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Consent checkboxes */
+  .consent-list { display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .consent-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.88rem; color: var(--text); line-height: 1.55; font-weight: 300;
+  }
+
+  .consent-item input[type="checkbox"] {
+    width: 16px; height: 16px; accent-color: var(--emerald);
+    cursor: pointer; flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* Navigation buttons */
+  .app-nav-btns {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 2rem;
+  }
+
+  .btn-back {
+    background: transparent; color: var(--text-muted);
+    border: 1.5px solid var(--border);
+    padding: 0.75rem 1.75rem; border-radius: 4px;
+    font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .btn-back:hover { border-color: var(--emerald); color: var(--emerald); }
+
+  .app-step-count {
+    font-size: 0.82rem; color: var(--text-muted); font-weight: 400;
+  }
+
+  /* Success */
+  .app-success {
+    text-align: center; padding: 3rem 2rem;
+    background: var(--ivory); border: 1px solid var(--border);
+    border-radius: 10px; max-width: 860px; margin: 2rem auto 0;
+    display: none;
+  }
+
+  .app-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  .app-success h3 {
+    font-family: var(--font-display); font-size: 2rem;
+    color: var(--emerald); margin-bottom: 0.75rem;
+  }
+
+  .app-success p { color: var(--text-muted); font-weight: 300; max-width: 480px; margin: 0 auto; }
+
+  /* VOLUNTEER MODAL */
+  .vol-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(26,92,58,0.6);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+
+  .vol-overlay.active { opacity: 1; pointer-events: all; }
+
+  .vol-modal {
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(16px);
+    transition: transform 0.25s;
+  }
+
+  .vol-overlay.active .vol-modal { transform: translateY(0); }
+
+  .vol-modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.3rem; color: var(--text-muted); line-height: 1;
+  }
+
+  .vol-modal-close:hover { color: var(--text); }
+
+  .vol-modal-eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+  }
+
+  .vol-modal h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem; font-weight: 500;
+    color: var(--emerald); margin-bottom: 0.4rem;
+  }
+
+  .vol-modal .vol-modal-sub {
+    font-size: 0.88rem; color: var(--text-muted);
+    font-weight: 300; margin-bottom: 1.5rem; line-height: 1.7;
+  }
+
+  .vol-modal-success {
+    text-align: center; padding: 1.5rem 0; display: none;
+  }
+
+  .vol-modal-success .check { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+  .vol-modal-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem; color: var(--emerald); margin-bottom: 0.5rem;
+  }
+
+  .vol-modal-success p { color: var(--text-muted); font-weight: 300; font-size: 0.9rem; }
+
+
+  #volunteer { background: var(--ivory); }
+
+  .volunteer-intro { max-width: 860px; margin: 0 auto; }
+
+  .volunteer-roles {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; max-width: 860px; margin: 2.5rem auto;
+  }
+
+  .role-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .role-card:hover {
+    box-shadow: 0 6px 24px rgba(26,92,58,0.08);
+    transform: translateY(-2px);
+  }
+
+  .role-icon {
+    font-size: 1.5rem; margin-bottom: 0.75rem;
+  }
+
+  .role-card h4 {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 500;
+    color: var(--emerald); margin-bottom: 0.4rem;
+  }
+
+  .role-card p {
+    font-size: 0.85rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.65;
+  }
+
+  .vol-form-wrap {
+    max-width: 860px; margin: 0 auto;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 2.5rem;
+  }
+
+  .vol-form-wrap h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem; font-weight: 500;
+    color: var(--emerald); margin-bottom: 0.3rem;
+  }
+
+  .vol-form-wrap .vol-sub {
+    font-size: 0.88rem; color: var(--text-muted);
+    font-weight: 300; margin-bottom: 1.75rem;
+  }
+
+  .vol-success {
+    text-align: center; padding: 2rem 1rem; display: none;
+  }
+
+  .vol-success .check { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+  .vol-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem; color: var(--emerald); margin-bottom: 0.5rem;
+  }
+
+  .vol-success p { color: var(--text-muted); font-weight: 300; }
+
+  @media (max-width: 900px) {
+    .form-row { grid-template-columns: 1fr; }
+    .form-row.triple { grid-template-columns: 1fr; }
+    .check-grid { grid-template-columns: 1fr; }
+    .app-card { padding: 1.5rem; }
+    .step-label { display: none; }
+
+    .hero { padding: 7rem 2rem 4rem; }
+    .hero::before { display: none; }
+    .hero-badge { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .amenities-list { grid-template-columns: 1fr 1fr; }
+    section { padding: 4rem 2rem; }
+    .volunteer-roles { grid-template-columns: 1fr 1fr; }
+    .vol-form-wrap { padding: 1.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="leroys_hands_logo.png" alt="Leroy's Hands Independent Living Logo"></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#apply">Apply</a></li>
+    <li><a href="#volunteer">Volunteer</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(); return false;">Join Waitlist</a></li>
+    <li><a href="#" class="nav-cta" style="background:var(--olive)!important;" onclick="openVolModal(); return false;">Volunteer Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <img src="leroys_hands_logo.png" alt="Leroy's Hands Logo" style="height:130px; width:auto; margin-bottom:1.25rem; display:block;">
+    <p class="hero-eyebrow">Compassionate Independent Living</p>
+    <h1>Where every hand<br>holds yours with <em>care</em></h1>
+    <p>Leroy's Hands provides dignified, professional independent living where residents are treated like family — with attentive care, warm community, and the comfort of home.</p>
+    <div class="hero-actions">
+      <a href="#about" class="btn-primary">Discover Our Community</a>
+      <a href="#" class="btn-outline" onclick="openModal(); return false;">Join the Waitlist</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="badge-num">15+</div>
+    <p>Years of trusted care in our community</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div style="max-width:1100px; margin: 0 auto;">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">Built on compassion,<br>rooted in community</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Leroy's Hands was founded with a simple belief: every person deserves to age with dignity, surrounded by genuine care and a true sense of belonging. What started as one man's vision has grown into a trusted home for residents and their families.</p>
+      <p>Our dedicated team works together to create an environment where independence is celebrated, and every individual's needs are met with patience and expertise. Leroy's Hands is providing home base stability for people in need of a structured living environment. This independent living environment targets veterans and/or people experiencing homelessness, and temporary housing displacement. Leroy's Hands offers long term and short-term housing.</p>
+      <p>Leroy's Hands will also focus on giving back to the community in which we strive to improve. We will be structured to encourage positive growth and seek accomplishments throughout our programs with a volunteer program that includes various opportunities for the community to grow.</p>
+      <a href="https://calendar.app.google/Sc5xUGJM8JZjwbjR8" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 0.5rem;">Schedule a Visit</a>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><div class="num">200+</div><div class="label">Residents cared for</div></div>
+      <div class="stat-card"><div class="num">98%</div><div class="label">Family satisfaction rate</div></div>
+      <div class="stat-card"><div class="num">24/7</div><div class="label">On-site medical staff</div></div>
+      <div class="stat-card"><div class="num">4.9★</div><div class="label">Average community rating</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Comprehensive care for<br>every stage of life</h2>
+    <p class="section-subtitle">Our services are tailored to meet each resident's unique needs — from independent living assistance to comprehensive daily support.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🤲</div>
+      <h3>Personal Care Coaching</h3>
+      <p>Daily support with bathing, dressing, grooming, and mobility to help residents maintain their independence and dignity.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💊</div>
+      <h3>Medication Management</h3>
+      <p>Coaching/reminders will be provided for medication schedules, administration, and coordination with physicians and pharmacies.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🍽️</div>
+      <h3>Nutritional Dining</h3>
+      <p>Chef-prepared, dietitian-approved meals served in a welcoming dining room, with special dietary accommodations available.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>Enrichment Activities</h3>
+      <p>Daily social, creative, and physical activities designed to keep residents engaged, active, and connected to community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="amenities-intro">
+    <p class="section-label">Life at Leroy's Hands</p>
+    <h2 class="section-title">A home you'll<br>love coming back to</h2>
+    <p class="section-subtitle">Every detail of our facility has been designed to create comfort, safety, and a true sense of home.</p>
+  </div>
+  <div class="amenities-list">
+    <div class="amenity-item"><div class="amenity-dot"></div>Private & semi-private rooms</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>Landscaped outdoor gardens</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>Library & quiet reading lounge</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>Common gathering areas</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>Transportation services</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>Pet-friendly community</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>Wi-Fi throughout facility</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>TV & entertainment lounges</div>
+    <div class="amenity-item"><div class="amenity-dot"></div>On-site laundry services</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:1100px; margin: 0 auto;">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">We'd love to hear from you</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>Whether you're exploring options for yourself or a loved one, our team is here to answer every question and guide you through the process with care.</p>
+      <div class="contact-detail">
+        <div class="cd-icon">📍</div>
+        <div class="cd-text">
+          <strong>Address</strong>
+          <span>1135 W Cheltenham Ave, Ste 8 #182<br>Elkins Park, PA 19027</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">✉️</div>
+        <div class="cd-text">
+          <strong>Email</strong>
+          <span>lenya.middleton@leroyshands.org</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">🕐</div>
+        <div class="cd-text">
+          <strong>Hours</strong>
+          <span>Mon–Fri 8am–6pm<br>Sat–Sun 9am–4pm</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <input type="text" placeholder="Your full name">
+        <input type="email" placeholder="Email address">
+        <input type="tel" placeholder="Phone number">
+        <textarea placeholder="Tell us about your needs or ask a question…"></textarea>
+        <button class="btn-primary" style="width:100%; border:none; font-size:1rem;">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION -->
+<section id="apply">
+  <div class="app-intro">
+    <p class="section-label">Residency Application</p>
+    <h2 class="section-title">Apply for a Shared Room</h2>
+    <p class="section-subtitle">Please complete all sections fully. Fields marked <span style="color:var(--gold)">*</span> are required. Incomplete applications may delay processing.</p>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="app-progress" id="app-progress">
+    <div class="app-step-dot active" data-step="0"><div class="step-circle">1</div><div class="step-label">Applicant Info</div></div>
+    <div class="app-step-dot" data-step="1"><div class="step-circle">2</div><div class="step-label">Emergency Contact</div></div>
+    <div class="app-step-dot" data-step="2"><div class="step-circle">3</div><div class="step-label">Health & Medical</div></div>
+    <div class="app-step-dot" data-step="3"><div class="step-circle">4</div><div class="step-label">Financial</div></div>
+    <div class="app-step-dot" data-step="4"><div class="step-circle">5</div><div class="step-label">References</div></div>
+    <div class="app-step-dot" data-step="5"><div class="step-circle">6</div><div class="step-label">Background</div></div>
+    <div class="app-step-dot" data-step="6"><div class="step-circle">7</div><div class="step-label">Programs</div></div>
+    <div class="app-step-dot" data-step="7"><div class="step-circle">8</div><div class="step-label">Consent</div></div>
+  </div>
+
+  <div class="app-panels" id="app-panels">
+
+    <!-- STEP 1: Applicant Info -->
+    <div class="app-panel active" id="app-panel-0">
+      <div class="app-card">
+        <h3>Section 1 — Applicant Information</h3>
+        <p class="panel-sub">Please provide your current personal details as they appear on your legal documents.</p>
+        <div class="form-row single">
+          <div class="form-group"><label>Full Legal Name <span class="req">*</span></label><input type="text" placeholder="First Middle Last"></div>
+        </div>
+        <div class="form-row triple">
+          <div class="form-group"><label>Date of Birth <span class="req">*</span></label><input type="date"></div>
+          <div class="form-group"><label>Age <span class="req">*</span></label><input type="number" placeholder="Age" min="18" max="120"></div>
+          <div class="form-group"><label>SSN Last 4 Digits <span class="req">*</span></label><input type="text" maxlength="4" placeholder="XXXX"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Current Address <span class="req">*</span></label><input type="text" placeholder="Street address"></div>
+        </div>
+        <div class="form-row triple">
+          <div class="form-group"><label>City <span class="req">*</span></label><input type="text" placeholder="City"></div>
+          <div class="form-group"><label>State <span class="req">*</span></label><input type="text" placeholder="State"></div>
+          <div class="form-group"><label>ZIP <span class="req">*</span></label><input type="text" placeholder="ZIP"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone Number <span class="req">*</span></label><input type="tel" placeholder="(555) 000-0000"></div>
+          <div class="form-group"><label>Alternate Phone</label><input type="tel" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        </div>
+        <hr class="section-divider">
+        <span class="field-label">Gender</span>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="male"> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="nonbinary"> Non-Binary</label>
+          <label><input type="radio" name="gender" value="prefer-not"> Prefer Not to Say</label>
+        </div>
+        <div class="app-nav-btns">
+          <span></span>
+          <span class="app-step-count">Step 1 of 8</span>
+          <button class="btn-primary" onclick="appNext(0)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Emergency Contact -->
+    <div class="app-panel" id="app-panel-1">
+      <div class="app-card">
+        <h3>Section 2 — Emergency Contact</h3>
+        <p class="panel-sub">Provide a person we can reach in the event of an emergency.</p>
+        <div class="form-row single">
+          <div class="form-group"><label>Contact Full Name <span class="req">*</span></label><input type="text" placeholder="Full name"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Relationship to Applicant <span class="req">*</span></label><input type="text" placeholder="e.g. Daughter, Son, Spouse"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone Number <span class="req">*</span></label><input type="tel" placeholder="(555) 000-0000"></div>
+          <div class="form-group"><label>Alternate Phone</label><input type="tel" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Address</label><input type="text" placeholder="Street address, city, state, ZIP"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="contact@example.com"></div>
+        </div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(1)">&larr; Back</button>
+          <span class="app-step-count">Step 2 of 8</span>
+          <button class="btn-primary" onclick="appNext(1)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Health & Medical -->
+    <div class="app-panel" id="app-panel-2">
+      <div class="app-card">
+        <h3>Section 3 — Health &amp; Medical Information</h3>
+        <p class="panel-sub">This information helps us provide appropriate care and support for your needs.</p>
+        <div class="form-row">
+          <div class="form-group"><label>Primary Care Physician</label><input type="text" placeholder="Doctor's full name"></div>
+          <div class="form-group"><label>Physician Phone Number</label><input type="tel" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Current Medications</label><textarea placeholder="List medications or write 'See attached sheet'"></textarea></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Known Allergies <span class="req">*</span></label><input type="text" placeholder="e.g. Penicillin, Latex, None"></div>
+        </div>
+        <hr class="section-divider">
+        <span class="field-label">Do you have any of the following? (check all that apply)</span>
+        <div class="check-grid">
+          <label><input type="checkbox"> Mobility Limitation</label>
+          <label><input type="checkbox"> Hearing Impairment</label>
+          <label><input type="checkbox"> Vision Impairment</label>
+          <label><input type="checkbox"> Memory / Cognitive Condition</label>
+          <label><input type="checkbox"> Diabetes</label>
+          <label><input type="checkbox"> Heart Condition</label>
+          <label><input type="checkbox"> Respiratory Condition</label>
+          <label><input type="checkbox"> Mental Health Diagnosis</label>
+        </div>
+        <hr class="section-divider">
+        <div class="form-row single">
+          <div class="form-group"><label>Additional Health Notes</label><textarea placeholder="Any other relevant health information…"></textarea></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Do you require any assistive devices?</label><input type="text" placeholder="e.g. Walker, Wheelchair, Hearing aid, None"></div>
+        </div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(2)">&larr; Back</button>
+          <span class="app-step-count">Step 3 of 8</span>
+          <button class="btn-primary" onclick="appNext(2)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Financial -->
+    <div class="app-panel" id="app-panel-3">
+      <div class="app-card">
+        <h3>Section 4 — Financial Information</h3>
+        <p class="panel-sub">All financial information is kept strictly confidential and used solely for residency planning.</p>
+        <span class="field-label">Primary Source of Income / Payment <span style="color:var(--gold)">*</span></span>
+        <div class="check-grid">
+          <label><input type="checkbox" name="income"> Private Pay</label>
+          <label><input type="checkbox" name="income"> SSI / SSDI</label>
+          <label><input type="checkbox" name="income"> Medicaid</label>
+          <label><input type="checkbox" name="income"> Veterans Benefits</label>
+          <label><input type="checkbox" name="income"> Long-Term Care Insurance</label>
+          <label><input type="checkbox" name="income" id="income-other-cb" onclick="toggleOtherIncome()"> Other (specify below)</label>
+        </div>
+        <div class="form-row single" id="income-other-field" style="margin-top:1rem; display:none;">
+          <div class="form-group"><label>If Other, please specify</label><input type="text" placeholder="Describe other income source"></div>
+        </div>
+        <hr class="section-divider">
+        <div class="form-row">
+          <div class="form-group"><label>Monthly Income (approximate)</label><input type="text" placeholder="e.g. $1,200"></div>
+          <div class="form-group"><label>Name of Responsible Party (if applicable)</label><input type="text" placeholder="Full name"></div>
+        </div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(3)">&larr; Back</button>
+          <span class="app-step-count">Step 4 of 8</span>
+          <button class="btn-primary" onclick="appNext(3)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: References -->
+    <div class="app-panel" id="app-panel-4">
+      <div class="app-card">
+        <h3>Section 5 — Personal References</h3>
+        <p class="panel-sub">Please provide two non-family references who can speak to your character and cooperativeness in a shared living environment.</p>
+        <strong style="font-size:0.85rem; color:var(--emerald); display:block; margin-bottom:1rem;">Reference 1</strong>
+        <div class="form-row single"><div class="form-group"><label>Full Name</label><input type="text" placeholder="Reference's full name"></div></div>
+        <div class="form-row">
+          <div class="form-group"><label>Relationship</label><input type="text" placeholder="e.g. Neighbor, Colleague, Pastor"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="form-row single"><div class="form-group"><label>Email Address</label><input type="email" placeholder="ref1@example.com"></div></div>
+        <hr class="section-divider">
+        <strong style="font-size:0.85rem; color:var(--emerald); display:block; margin-bottom:1rem;">Reference 2</strong>
+        <div class="form-row single"><div class="form-group"><label>Full Name</label><input type="text" placeholder="Reference's full name"></div></div>
+        <div class="form-row">
+          <div class="form-group"><label>Relationship</label><input type="text" placeholder="e.g. Neighbor, Colleague, Pastor"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="form-row single"><div class="form-group"><label>Email Address</label><input type="email" placeholder="ref2@example.com"></div></div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(4)">&larr; Back</button>
+          <span class="app-step-count">Step 5 of 8</span>
+          <button class="btn-primary" onclick="appNext(4)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: Background -->
+    <div class="app-panel" id="app-panel-5">
+      <div class="app-card">
+        <h3>Section 6 — Background &amp; History</h3>
+        <p class="panel-sub">Honest answers are required. A "Yes" does not automatically disqualify your application.</p>
+        <span class="field-label">Have you ever been evicted from any residence? <span style="color:var(--gold)">*</span></span>
+        <div class="radio-group" style="margin-bottom:1rem;">
+          <label><input type="radio" name="evicted" value="yes" onclick="toggleEvict(true)"> Yes</label>
+          <label><input type="radio" name="evicted" value="no" onclick="toggleEvict(false)"> No</label>
+        </div>
+        <div class="form-row single" id="evict-explain" style="display:none;">
+          <div class="form-group"><label>If yes, please explain</label><textarea placeholder="Provide details…"></textarea></div>
+        </div>
+        <hr class="section-divider">
+        <span class="field-label">Have you ever been convicted of a felony? <span style="color:var(--gold)">*</span></span>
+        <div class="radio-group" style="margin-bottom:1rem;">
+          <label><input type="radio" name="felony" value="yes" onclick="toggleFelony(true)"> Yes</label>
+          <label><input type="radio" name="felony" value="no" onclick="toggleFelony(false)"> No</label>
+        </div>
+        <div class="form-row single" id="felony-explain" style="display:none;">
+          <div class="form-group"><label>If yes, please explain</label><textarea placeholder="Provide details…"></textarea></div>
+        </div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(5)">&larr; Back</button>
+          <span class="app-step-count">Step 6 of 8</span>
+          <button class="btn-primary" onclick="appNext(5)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7: Programs -->
+    <div class="app-panel" id="app-panel-6">
+      <div class="app-card">
+        <h3>Section 7 — Programs &amp; Services</h3>
+        <p class="panel-sub">The following programs are currently in development. Indicate your interest so we may notify you when enrollment opens.</p>
+        <span class="field-label">Which programs interest you? (check all that apply)</span>
+        <div class="check-grid" style="margin-top:0.5rem;">
+          <label><input type="checkbox"> Wellness &amp; Fitness Program (TBD)</label>
+          <label><input type="checkbox"> Social Activities Program (TBD)</label>
+          <label><input type="checkbox"> Vocational Training (TBD)</label>
+          <label><input type="checkbox"> Spiritual / Faith Program (TBD)</label>
+          <label><input type="checkbox"> Nutrition &amp; Meal Services (TBD)</label>
+          <label><input type="checkbox"> Transportation Assistance (TBD)</label>
+          <label><input type="checkbox"> Mental Health Support (TBD)</label>
+          <label><input type="checkbox"> Job Readiness Program (TBD)</label>
+        </div>
+        <hr class="section-divider">
+        <div class="form-row single">
+          <div class="form-group"><label>Additional Program Interests or Special Needs</label><textarea placeholder="Describe any additional interests or needs…"></textarea></div>
+        </div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(6)">&larr; Back</button>
+          <span class="app-step-count">Step 7 of 8</span>
+          <button class="btn-primary" onclick="appNext(6)">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8: Consent -->
+    <div class="app-panel" id="app-panel-7">
+      <div class="app-card">
+        <h3>Section 8 — Consent &amp; Acknowledgment</h3>
+        <p class="panel-sub">By submitting this application you confirm that all information provided is accurate and complete, and you agree to abide by the <a href="leroys_hands_brochure.docx" download style="color:var(--emerald);text-decoration:underline;font-weight:500;">House Rules and Regulations</a> of Leroy's Hands Independent Living.</p>
+        <div class="consent-list">
+          <label class="consent-item"><input type="checkbox" id="c1"> All information provided in this application is true and accurate to the best of my knowledge.</label>
+          <label class="consent-item"><input type="checkbox" id="c2"> Leroy's Hands Independent Living reserves the right to verify all information submitted and conduct a background check.</label>
+          <label class="consent-item"><input type="checkbox" id="c3"> Submission of this application does not guarantee placement or residency.</label>
+          <label class="consent-item"><input type="checkbox" id="c4"> I have read and agree to comply with all <a href="leroys_hands_brochure.docx" download style="color:var(--emerald);text-decoration:underline;font-weight:500;">House Rules and Regulations</a> as outlined in the residency documents.</label>
+          <label class="consent-item"><input type="checkbox" id="c5"> My residency may be terminated for material misrepresentation or repeated violation of house rules.</label>
+        </div>
+        <hr class="section-divider">
+        <div class="form-row">
+          <div class="form-group"><label>Applicant Printed Name <span class="req">*</span></label><input type="text" placeholder="Print your full legal name"></div>
+          <div class="form-group"><label>Date <span class="req">*</span></label><input type="date"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Guardian / Representative Name (if applicable)</label><input type="text" placeholder="Full name of guardian or rep"></div>
+        </div>
+        <div class="app-nav-btns">
+          <button class="btn-back" onclick="appBack(7)">&larr; Back</button>
+          <span class="app-step-count">Step 8 of 8</span>
+          <button class="btn-primary" onclick="submitApp()">Submit Application</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end app-panels -->
+
+  <!-- Success State -->
+  <div class="app-success" id="app-success">
+    <div class="success-icon">🤲</div>
+    <h3>Application Received!</h3>
+    <p>Thank you for applying to Leroy's Hands Independent Living. A member of our team will review your application and reach out to you within 3–5 business days.</p>
+  </div>
+
+</section>
+
+<!-- VOLUNTEER -->
+<section id="volunteer">
+  <div class="volunteer-intro">
+    <p class="section-label">Give Back</p>
+    <h2 class="section-title">Volunteer with Us</h2>
+    <p class="section-subtitle">Our volunteers are the heartbeat of our community. Whether you have a few hours a week or a few hours a month, your time makes a profound difference in the lives of our residents.</p>
+  </div>
+
+  <!-- Volunteer Roles -->
+  <div class="volunteer-roles">
+    <div class="role-card">
+      <div class="role-icon">🎨</div>
+      <h4>Arts &amp; Activities</h4>
+      <p>Lead creative workshops, music sessions, or group games that bring joy and stimulation to our residents.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-icon">🌿</div>
+      <h4>Garden &amp; Outdoors</h4>
+      <p>Help tend our gardens or escort residents on outdoor walks, connecting them with nature and fresh air.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-icon">🤝</div>
+      <h4>General Support</h4>
+      <p>Assist staff with events, errands, and day-to-day tasks that keep our community running smoothly.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-icon">🍲</div>
+      <h4>Feed the Homeless</h4>
+      <p>Join our outreach efforts to prepare and distribute warm meals to those experiencing homelessness in our community.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-icon">💛</div>
+      <h4>Give Back to the Community</h4>
+      <p>Participate in neighborhood initiatives, community clean-ups, and outreach programs that uplift those around us.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-icon">📦</div>
+      <h4>Food Bank &amp; Food Drives</h4>
+      <p>Help collect, sort, and distribute food donations to families and individuals facing food insecurity.</p>
+    </div>
+  </div>
+
+  <!-- Volunteer Sign-Up Form -->
+  <div class="vol-form-wrap" id="vol-form-wrap">
+    <div id="vol-form-content">
+      <h3>Sign Up to Volunteer</h3>
+      <p class="vol-sub">Fill out the form below and a member of our team will reach out to schedule your orientation.</p>
+
+      <div class="form-row">
+        <div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" placeholder="First name"></div>
+        <div class="form-group"><label>Last Name <span class="req">*</span></label><input type="text" id="vol-lname" placeholder="Last name"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" id="vol-email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Age Range</label>
+          <select>
+            <option value="" disabled selected>Select age range</option>
+            <option>Under 18 (parental consent required)</option>
+            <option>18–25</option>
+            <option>26–40</option>
+            <option>41–60</option>
+            <option>61+</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Availability</label>
+          <select>
+            <option value="" disabled selected>Select availability</option>
+            <option>Weekday mornings</option>
+            <option>Weekday afternoons</option>
+            <option>Weekday evenings</option>
+            <option>Weekends</option>
+            <option>Flexible</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row single" style="margin-top:0.25rem;">
+        <div class="form-group">
+          <label>Areas of Interest (check all that apply)</label>
+          <div class="check-grid" style="margin-top:0.5rem;">
+            <label><input type="checkbox"> Arts &amp; Activities</label>
+            <label><input type="checkbox"> Garden &amp; Outdoors</label>
+            <label><input type="checkbox"> General Support</label>
+            <label><input type="checkbox"> Feed the Homeless</label>
+            <label><input type="checkbox"> Give Back to the Community</label>
+            <label><input type="checkbox"> Food Bank &amp; Food Drives</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row single" style="margin-top:1rem;">
+        <div class="form-group"><label>Tell Us About Yourself</label><textarea placeholder="Share any relevant skills, experience, or why you'd like to volunteer with Leroy's Hands…"></textarea></div>
+      </div>
+
+      <div class="form-row single">
+        <div class="form-group">
+          <label class="check-group">
+            <label style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;font-weight:300;color:var(--text);text-transform:none;letter-spacing:0;">
+              <input type="checkbox" id="vol-consent" style="width:15px;height:15px;accent-color:var(--emerald);margin-top:2px;flex-shrink:0;">
+              I understand that volunteering is subject to a brief orientation and background screening process.
+            </label>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-primary" style="width:100%;border:none;font-size:1rem;margin-top:0.5rem;" onclick="submitVolunteer()">Submit Volunteer Application</button>
+    </div>
+
+    <div class="vol-success" id="vol-success">
+      <div class="check">🌿</div>
+      <h3>Thank You for Volunteering!</h3>
+      <p>We're so grateful for your willingness to serve. A member of our team will be in touch shortly to welcome you to the Leroy's Hands family.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <span>Leroy's Hands</span> Independent Living. All rights reserved. | Crafted with care.</p>
+</footer>
+
+<!-- WAITLIST MODAL -->
+<div class="overlay" id="overlay" onclick="closeOnBackdrop(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+
+    <div id="modal-form-content">
+      <p class="modal-eyebrow">Join Our Community</p>
+      <h2 id="modal-title">Join the Waitlist</h2>
+      <p>Availability is limited. Add your name to our waitlist and we'll reach out as soon as a spot becomes available.</p>
+
+      <input type="text" id="wl-name" placeholder="Full name" />
+      <input type="email" id="wl-email" placeholder="Email address" />
+      <input type="tel" id="wl-phone" placeholder="Phone number (optional)" />
+      <select id="wl-care">
+        <option value="" disabled selected>Level of care needed</option>
+        <option>Independent living assistance</option>
+        <option>Assisted daily living</option>
+        <option>Full-time nursing care</option>
+        <option>Not sure yet</option>
+      </select>
+      <button class="btn-primary" style="width:100%; border:none; font-size:1rem; margin-top:0.25rem;" onclick="submitWaitlist()">
+        Reserve My Spot
+      </button>
+    </div>
+
+    <div class="modal-success" id="modal-success">
+      <div class="check">🤲</div>
+      <h3>You're on the list!</h3>
+      <p>Thank you for reaching out. A member of the Leroy's Hands team will be in touch with you shortly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VOLUNTEER MODAL POPUP -->
+<div class="vol-overlay" id="vol-overlay" onclick="closeVolOnBackdrop(event)">
+  <div class="vol-modal" role="dialog" aria-modal="true" aria-labelledby="vol-modal-title">
+    <button class="vol-modal-close" onclick="closeVolModal()" aria-label="Close">&times;</button>
+
+    <div id="vol-modal-form-content">
+      <p class="vol-modal-eyebrow">Make a Difference</p>
+      <h2 id="vol-modal-title">Sign Up to Volunteer</h2>
+      <p class="vol-modal-sub">Join the Leroy's Hands family as a volunteer. Fill out the form below and we'll reach out to schedule your orientation.</p>
+
+      <div class="form-row">
+        <div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" placeholder="First name"></div>
+        <div class="form-group"><label>Last Name <span class="req">*</span></label><input type="text" id="vol-modal-lname" placeholder="Last name"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" id="vol-modal-email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Availability</label>
+          <select>
+            <option value="" disabled selected>Select availability</option>
+            <option>Weekday mornings</option>
+            <option>Weekday afternoons</option>
+            <option>Weekday evenings</option>
+            <option>Weekends</option>
+            <option>Flexible</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Age Range</label>
+          <select>
+            <option value="" disabled selected>Select age range</option>
+            <option>Under 18 (parental consent required)</option>
+            <option>18–25</option>
+            <option>26–40</option>
+            <option>41–60</option>
+            <option>61+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:1rem;">
+        <label>Areas of Interest (check all that apply)</label>
+        <div class="check-grid" style="margin-top:0.5rem;">
+          <label><input type="checkbox"> Arts &amp; Activities</label>
+          <label><input type="checkbox"> Garden &amp; Outdoors</label>
+          <label><input type="checkbox"> General Support</label>
+          <label><input type="checkbox"> Feed the Homeless</label>
+          <label><input type="checkbox"> Give Back to the Community</label>
+          <label><input type="checkbox"> Food Bank &amp; Food Drives</label>
+        </div>
+      </div>
+      <label style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;font-weight:300;color:var(--text);margin-bottom:1.25rem;">
+        <input type="checkbox" id="vol-modal-consent" style="width:15px;height:15px;accent-color:var(--emerald);margin-top:2px;flex-shrink:0;">
+        I understand that volunteering is subject to a brief orientation and background screening process.
+      </label>
+      <button class="btn-primary" style="width:100%;border:none;font-size:1rem;" onclick="submitVolModal()">Submit Volunteer Application</button>
+    </div>
+
+    <div class="vol-modal-success" id="vol-modal-success">
+      <div class="check">🌿</div>
+      <h3>Thank You!</h3>
+      <p>We're so grateful for your willingness to serve. A member of our team will be in touch shortly to welcome you to the Leroy's Hands family.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      document.getElementById('modal-form-content').style.display = 'block';
+      document.getElementById('modal-success').style.display = 'none';
+    }, 300);
+  }
+
+  function closeOnBackdrop(e) {
+    if (e.target === document.getElementById('overlay')) closeModal();
+  }
+
+  // FORM SUBMISSION HELPERS — collects field values and sends to Formspree
+  function collectFormFields(containerId) {
+    const container = document.getElementById(containerId);
+    const data = {};
+    container.querySelectorAll('input, select, textarea').forEach(el => {
+      const key = el.id || el.name;
+      if (!key) return;
+      if (el.type === 'checkbox') {
+        data[key] = el.checked;
+      } else if (el.type === 'radio') {
+        if (el.checked) data[key] = el.value;
+      } else {
+        data[key] = el.value;
+      }
+    });
+    return data;
+  }
+
+  function sendToFormspree(endpoint, data) {
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(err => console.error('Formspree submission error:', err));
+  }
+
+  const FORMSPREE_APPLICATION_ENDPOINT = 'https://formspree.io/f/maqrpybp';
+  const FORMSPREE_VOLUNTEER_ENDPOINT = 'https://formspree.io/f/xwvgrknv';
+  const FORMSPREE_WAITLIST_ENDPOINT = 'https://formspree.io/f/mqeryjzn';
+
+  function submitWaitlist() {
+    const name = document.getElementById('wl-name').value.trim();
+    const email = document.getElementById('wl-email').value.trim();
+    if (!name || !email) {
+      alert('Please enter your name and email to join the waitlist.');
+      return;
+    }
+    const data = collectFormFields('modal-form-content');
+    data._subject = 'New Waitlist Sign-up — Leroy\'s Hands';
+    data.formType = 'Waitlist';
+    sendToFormspree(FORMSPREE_WAITLIST_ENDPOINT, data);
+    document.getElementById('modal-form-content').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  }
+
+  // VOLUNTEER FORM
+  function submitVolunteer() {
+    const lname = document.getElementById('vol-lname').value.trim();
+    const email = document.getElementById('vol-email').value.trim();
+    const consent = document.getElementById('vol-consent').checked;
+    if (!lname || !email) { alert('Please enter your name and email to submit.'); return; }
+    if (!consent) { alert('Please check the consent box before submitting.'); return; }
+    const data = collectFormFields('vol-form-content');
+    data._subject = 'New Volunteer Sign-up — Leroy\'s Hands (Main Form)';
+    data.formType = 'Volunteer (Main Form)';
+    sendToFormspree(FORMSPREE_VOLUNTEER_ENDPOINT, data);
+    document.getElementById('vol-form-content').style.display = 'none';
+    document.getElementById('vol-success').style.display = 'block';
+    document.getElementById('volunteer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // APPLICATION MULTI-STEP
+  const TOTAL_STEPS = 8;
+
+  function appGoTo(step) {
+    document.querySelectorAll('.app-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === step);
+    });
+    document.querySelectorAll('.app-step-dot').forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i < step) d.classList.add('done');
+      if (i === step) d.classList.add('active');
+      // Show checkmark for done steps
+      const circle = d.querySelector('.step-circle');
+      if (i < step) circle.textContent = '✓';
+      else circle.textContent = i + 1;
+    });
+    document.getElementById('apply').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function appNext(currentStep) {
+    if (currentStep < TOTAL_STEPS - 1) appGoTo(currentStep + 1);
+  }
+
+  function appBack(currentStep) {
+    if (currentStep > 0) appGoTo(currentStep - 1);
+  }
+
+  function submitApp() {
+    const consents = ['c1','c2','c3','c4','c5'];
+    const allChecked = consents.every(id => document.getElementById(id).checked);
+    if (!allChecked) {
+      alert('Please check all consent boxes before submitting.');
+      return;
+    }
+    const data = collectFormFields('app-panels');
+    data._subject = 'New Housing Application — Leroy\'s Hands';
+    data.formType = 'Application';
+    sendToFormspree(FORMSPREE_APPLICATION_ENDPOINT, data);
+    document.getElementById('app-panels').style.display = 'none';
+    document.getElementById('app-progress').style.display = 'none';
+    document.getElementById('app-success').style.display = 'block';
+    document.getElementById('apply').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function toggleEvict(show) {
+    document.getElementById('evict-explain').style.display = show ? 'grid' : 'none';
+  }
+
+  function toggleFelony(show) {
+    document.getElementById('felony-explain').style.display = show ? 'grid' : 'none';
+  }
+
+  function toggleOtherIncome() {
+    const cb = document.getElementById('income-other-cb');
+    document.getElementById('income-other-field').style.display = cb.checked ? 'grid' : 'none';
+  }
+
+
+  // VOLUNTEER MODAL
+  function openVolModal() {
+    document.getElementById('vol-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVolModal() {
+    document.getElementById('vol-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('vol-dismissed', '1');
+  }
+
+  function closeVolOnBackdrop(e) {
+    if (e.target === document.getElementById('vol-overlay')) closeVolModal();
+  }
+
+  function submitVolModal() {
+    const lname = document.getElementById('vol-modal-lname').value.trim();
+    const email = document.getElementById('vol-modal-email').value.trim();
+    const consent = document.getElementById('vol-modal-consent').checked;
+    if (!lname || !email) { alert('Please enter your name and email to submit.'); return; }
+    if (!consent) { alert('Please check the consent box before submitting.'); return; }
+    const data = collectFormFields('vol-modal-form-content');
+    data._subject = 'New Volunteer Sign-up — Leroy\'s Hands (Popup)';
+    data.formType = 'Volunteer (Popup Modal)';
+    sendToFormspree(FORMSPREE_VOLUNTEER_ENDPOINT, data);
+    document.getElementById('vol-modal-form-content').style.display = 'none';
+    document.getElementById('vol-modal-success').style.display = 'block';
+  }
+
+  // Page load: show volunteer popup after 4s, then waitlist after 12s
+  setTimeout(() => {
+    if (!sessionStorage.getItem('vol-dismissed')) openVolModal();
+  }, 4000);
+
+  setTimeout(() => {
+    if (!sessionStorage.getItem('wl-dismissed') && !document.getElementById('vol-overlay').classList.contains('active')) {
+      openModal();
+    }
+  }, 12000);
+
+
+
+  document.getElementById('overlay').addEventListener('click', function() {
+    sessionStorage.setItem('wl-dismissed', '1');
+  });
+</script>
+</body>
+</html>
